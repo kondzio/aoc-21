@@ -15,8 +15,7 @@ class AggregatorTest {
     @Test
     void day1p1Test() {
         Stream<Integer> inputStream = InputFileLoadUtils.readLines("test1.txt").stream().map(Integer::parseInt);
-        Integer result = new Day1().calculatePart1(inputStream);
-        Assertions.assertEquals(7, result);
+        Assertions.assertEquals(7, new Day1().calculatePart1(inputStream));
     }
 
     @Test
