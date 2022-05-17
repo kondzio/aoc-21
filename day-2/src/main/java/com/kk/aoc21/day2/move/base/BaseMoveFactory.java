@@ -19,6 +19,6 @@ public class BaseMoveFactory implements MoveFactory<BasePosition> {
             case FORWARD:
                 return new BaseForwardMove(speed);
         }
-        throw new IllegalStateException("This places should not be reached");
+        throw new IllegalStateException("This line should not be reached");
     }
 }
