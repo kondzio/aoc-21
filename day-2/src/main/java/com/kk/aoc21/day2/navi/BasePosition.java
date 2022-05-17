@@ -6,14 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
-@AllArgsConstructor
 @ToString
-public class Position {
+@AllArgsConstructor
+public class BasePosition {
     int horizontal;
     int depth;
 
-    public static Position of(int horizontal, int depth) {
-        return new Position(horizontal, depth);
+    public static BasePosition of(int horizontal, int depth) {
+        return new BasePosition(horizontal, depth);
     }
 }

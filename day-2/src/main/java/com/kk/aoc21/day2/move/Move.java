@@ -1,17 +1,16 @@
 package com.kk.aoc21.day2.move;
 
-import com.kk.aoc21.day2.move.Direction;
-import com.kk.aoc21.day2.navi.Position;
+import com.kk.aoc21.day2.navi.BasePosition;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public abstract class Move {
+public abstract class Move<P> {
     @NonNull
     private final Direction direction;
     private final int speed;
 
-    public abstract Position make(Position position);
+    public abstract P make(P position);
 }

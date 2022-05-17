@@ -10,21 +10,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-public class Instruction {
-
-    private static final MoveFactory moveFactory = new MoveFactory();
+public class Instruction<P> {
     @NonNull
-    private final List<Move> moves;
+    private final List<Move<P>> moves;
 
-    public Position execute(@NonNull Position startPosition) {
-        Position currentPos = startPosition;
-        for (Move move : moves) {
+    public P execute(@NonNull P startPosition) {
+        P currentPos = startPosition;
+        for (Move<P> move : moves) {
             currentPos = move.make(currentPos);
         }
         return currentPos;
     }
 
-    public static Instruction compile(List<String> input) {
-        return new Instruction(input.stream().map(moveFactory::createMove).collect(Collectors.toList()));
+    public static <T> Instruction<T> compile(List<String> input, MoveFactory<T> moveFactory) {
+        return new Instruction<>(input.stream().map(moveFactory::createMove).collect(Collectors.toList()));
     }
 }
