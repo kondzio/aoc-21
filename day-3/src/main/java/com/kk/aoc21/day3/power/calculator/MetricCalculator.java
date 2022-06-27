@@ -1,7 +1,9 @@
 package com.kk.aoc21.day3.power.calculator;
 
-import java.util.List;
+import com.kk.aoc21.day3.report.ReportDecoder;
+import com.kk.aoc21.day3.report.ReportDecoder.Metric;
+import lombok.NonNull;
 
 public interface MetricCalculator {
-    int calculate(List<String> report);
+    Metric calculate(@NonNull ReportDecoder.DecodedReport decodedReport);
 }
