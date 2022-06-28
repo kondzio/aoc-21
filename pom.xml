@@ -10,10 +10,11 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>aoc-utils</module>
         <module>day-1</module>
         <module>day-2</module>
-        <module>aoc-utils</module>
         <module>day-3</module>
+        <module>day-4</module>
     </modules>
 
     <properties>

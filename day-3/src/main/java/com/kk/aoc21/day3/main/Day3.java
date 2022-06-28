@@ -1,8 +1,8 @@
 package com.kk.aoc21.day3.main;
 
-import com.kk.aoc21.day3.power.calculator.Co2ScrubberRateCalculator;
-import com.kk.aoc21.day3.power.calculator.OxygenGenerateRateCalculator;
-import com.kk.aoc21.day3.power.calculator.PowerConsumptionCalculator;
+import com.kk.aoc21.day3.metric.calculator.Co2ScrubberRateCalculator;
+import com.kk.aoc21.day3.metric.calculator.OxygenGenerateRateCalculator;
+import com.kk.aoc21.day3.metric.calculator.PowerConsumptionCalculator;
 import com.kk.aoc21.day3.report.ReportDecoder;
 import com.kk.aoc21.utils.InputFileLoadUtils;
 

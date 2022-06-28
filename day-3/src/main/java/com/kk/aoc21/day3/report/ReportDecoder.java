@@ -1,7 +1,7 @@
 package com.kk.aoc21.day3.report;
 
-import com.kk.aoc21.day3.power.calculator.DominantRateCalculator;
-import com.kk.aoc21.day3.power.calculator.MetricUtils;
+import com.kk.aoc21.day3.metric.calculator.DominantRateCalculator;
+import com.kk.aoc21.day3.metric.calculator.MetricUtils;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 

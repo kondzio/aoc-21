@@ -1,4 +1,4 @@
-package com.kk.aoc21.day3.power.calculator;
+package com.kk.aoc21.day3.metric.calculator;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
