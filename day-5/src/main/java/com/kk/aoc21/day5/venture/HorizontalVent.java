@@ -6,6 +6,8 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kk.aoc21.day5.utils.LineUtils.max;
+import static com.kk.aoc21.day5.utils.LineUtils.min;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -31,22 +33,16 @@ public class HorizontalVent extends AbstractVent {
 
     @Override
     public List<Coordinates> calculateCrossPointCoordinates(HorizontalVent horizontalVent) {
-        if(this.getY() != horizontalVent.getY()) {
-            return emptyList();
-        }
-        int thisMinX = Math.min(this.getBegin().getX(), this.getEnd().getX());
-        int thisMaxX = Math.max(this.getBegin().getX(), this.getEnd().getX());
-        int otherMinX = Math.min(horizontalVent.getBegin().getX(), horizontalVent.getEnd().getX());
-        int otherMaxX = Math.max(horizontalVent.getBegin().getX(), horizontalVent.getEnd().getX());
+        final Coordinates thisMinX = min(Coordinates::getX, this.getBegin(), this.getEnd());
+        final Coordinates thisMaxX = max(Coordinates::getX, this.getBegin(), this.getEnd());
+        final Coordinates otherMinX = min(Coordinates::getX, horizontalVent.getBegin(), horizontalVent.getEnd());
+        final Coordinates otherMaxX = max(Coordinates::getX, horizontalVent.getBegin(), horizontalVent.getEnd());
 
         int from = 0;
-        int to = 0;
-        if (thisMinX <= otherMinX && thisMaxX >= otherMinX) {
-            from = otherMinX;
-            to = Math.min(thisMaxX, otherMaxX);
-        } else if (thisMinX >= otherMinX && otherMaxX >= thisMinX) {
-            from = thisMinX;
-            to = Math.min(thisMaxX, otherMaxX);
+        int to = -1;
+        if (this.isOverlapping(otherMinX) || horizontalVent.isOverlapping(thisMinX)) {
+            from = Math.max(thisMinX.getX(), otherMinX.getX());
+            to = Math.min(thisMaxX.getX(), otherMaxX.getX());
         }
         List<Coordinates> coordinates = new ArrayList<>();
         for (int i = from; i < to + 1; i++) {

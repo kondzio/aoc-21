@@ -6,6 +6,8 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.kk.aoc21.day5.utils.LineUtils.max;
+import static com.kk.aoc21.day5.utils.LineUtils.min;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
@@ -20,22 +22,15 @@ public class VerticalVent extends AbstractVent {
 
     @Override
     public List<Coordinates> calculateCrossPointCoordinates(VerticalVent verticalVent) {
-        if(this.getX() != verticalVent.getX()) {
-            return emptyList();
-        }
-        int thisMinY = Math.min(this.getBegin().getY(), this.getEnd().getY());
-        int thisMaxY = Math.max(this.getBegin().getY(), this.getEnd().getY());
-        int otherMinY = Math.min(verticalVent.getBegin().getY(), verticalVent.getEnd().getY());
-        int otherMaxY = Math.max(verticalVent.getBegin().getY(), verticalVent.getEnd().getY());
-
+        final Coordinates thisMinY = min(Coordinates::getY, this.getBegin(), this.getEnd());
+        final Coordinates thisMaxY = max(Coordinates::getY, this.getBegin(), this.getEnd());
+        final Coordinates otherMinY = min(Coordinates::getY, verticalVent.getBegin(), verticalVent.getEnd());
+        final Coordinates otherMaxY = max(Coordinates::getY, verticalVent.getBegin(), verticalVent.getEnd());
         int from = 0;
-        int to = 0;
-        if (thisMinY <= otherMinY && thisMaxY >= otherMinY) {
-            from = otherMinY;
-            to = Math.min(thisMaxY, otherMaxY);
-        } else if (thisMinY >= otherMinY && otherMaxY >= thisMinY) {
-            from = thisMinY;
-            to = Math.min(thisMaxY, otherMaxY);
+        int to = -1;
+        if (this.isOverlapping(otherMinY) || verticalVent.isOverlapping(thisMinY)) {
+            from = Math.max(thisMinY.getY(), otherMinY.getY());
+            to = Math.min(thisMaxY.getY(), otherMaxY.getY());
         }
         List<Coordinates> coordinates = new ArrayList<>();
         for (int i = from; i < to + 1; i++) {
