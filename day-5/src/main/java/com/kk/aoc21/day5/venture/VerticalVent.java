@@ -1,6 +1,7 @@
 package com.kk.aoc21.day5.venture;
 
 import com.kk.aoc21.day5.utils.LineUtils;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,9 +13,9 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class VerticalVent extends AbstractVent {
     private final int x;
-
     public VerticalVent(Coordinates begin, Coordinates end) {
         super(begin, end);
         x = begin.getX();

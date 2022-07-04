@@ -1,6 +1,7 @@
 package com.kk.aoc21.day5.venture;
 
 import com.kk.aoc21.day5.utils.LineUtils;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class HorizontalVent extends AbstractVent {
     private final int y;
 
@@ -23,7 +25,7 @@ public class HorizontalVent extends AbstractVent {
     @Override
     public List<Coordinates> calculateCrossPointCoordinates(LinearVent linearVent) {
         int crossY = this.getY();
-        int crossX = -1 * linearVent.getB() / linearVent.getA();
+        int crossX = (crossY - linearVent.getB()) / linearVent.getA();
         Coordinates crossCoordinates = Coordinates.of(crossX, crossY);
         if (this.isOverlapping(crossCoordinates) && linearVent.isOverlapping(crossCoordinates)) {
             return singletonList(crossCoordinates);
